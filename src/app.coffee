@@ -21,11 +21,22 @@ app.get '/', (req, res) ->
 app.get '/hello/:name', (req, res) ->
   res.send "Hello #{req.params.name}"
   
-app.get '/metrics.json', (req, res) -> 
+app.get '/metrics.json/', (req, res) ->
   metrics.get (err, data) ->
     throw next err if err
     res.status(200).json data
-    
+
+app.get '/metrics.json/:id', (req, res) ->
+  metrics.getbyid req.params.id, (err, data) ->
+    throw next err if err
+    res.status(200).json data
+#    res.send "#{req.params.id}"
+
+app.delete '/metrics.json/:id', (req, res) ->
+  metrics.deletebyid req.params.id, (err) ->
+    throw next err if err
+    res.status(200).send 'metrics deleted'
+
 app.post '/metrics.json/:id', (req, res) -> 
   metrics.save req.params.id, req.body, (err) ->
     throw next err if err 
