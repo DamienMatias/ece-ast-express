@@ -3,5 +3,3 @@ db/*
 lib/*
 !*/.gitkeep
 *.log
-
-\.idea/
