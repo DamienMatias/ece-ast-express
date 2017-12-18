@@ -1,6 +1,6 @@
 express = require 'express'
 bodyparser = require 'body-parser'
-
+db = require('./db')("#{__dirname}/../db/data")
 metrics = require './metrics'
 
 app = express()
